@@ -53,8 +53,8 @@ export function SkinIcon({ size = 18, color = 'currentColor', strokeWidth = 1.6 
 export function SunMoonIcon({ size = 18, color = 'currentColor', strokeWidth = 1.6 }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8" cy="8" r="2.6" />
-      <path d="M8 2.5v1.4M8 12.1v1.4M2.5 8h1.4M4.3 4.3l1 1M4.3 11.7l1-1" />
+      <circle cx="8" cy="8" r="2.8" />
+      <path d="M8 2.3v1.7M8 12v1.7M2.3 8h1.7" />
       <path d="M20.5 15.8A5.2 5.2 0 0 1 14.8 10a4.1 4.1 0 0 0 6.8 6.8 5.2 5.2 0 0 1-1.1-1z" />
     </svg>
   );

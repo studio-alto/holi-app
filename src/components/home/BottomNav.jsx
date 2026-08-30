@@ -10,14 +10,14 @@ const RIGHT_TABS = [
 ];
 
 function TabButton({ id, label, Icon, activeColor, active, onSelect }) {
-  const color = active ? activeColor : 'rgba(255,255,255,0.45)';
+  const color = active ? activeColor : 'rgba(255,255,255,0.55)';
   return (
     <button
       aria-label={label}
       onClick={() => onSelect(id)}
       style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px 2px', background: 'none', border: 'none', cursor: 'pointer', minHeight: 44, borderRadius: 999 }}
     >
-      <Icon size={27} color={color} strokeWidth={1.8} />
+      <Icon size={27} color={color} strokeWidth={2.1} />
     </button>
   );
 }
