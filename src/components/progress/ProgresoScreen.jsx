@@ -30,17 +30,18 @@ export default function ProgresoScreen({ state, onNavigate }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <button
-        onClick={() => onNavigate('home')}
-        aria-label="Volver"
-        style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)' }}
-      >
-        <BackIcon />
-      </button>
-
-      <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        Progreso
-        <BarChartIcon />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <button
+          onClick={() => onNavigate('home')}
+          aria-label="Volver"
+          style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', flexShrink: 0 }}
+        >
+          <BackIcon />
+        </button>
+        <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 8 }}>
+          Progreso
+          <BarChartIcon />
+        </div>
       </div>
 
       <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>

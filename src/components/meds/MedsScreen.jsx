@@ -33,18 +33,19 @@ export default function MedsScreen({ state, update, addToast, onNavigate }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <button
-        onClick={() => onNavigate('home')}
-        aria-label="Volver"
-        style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)' }}
-      >
-        <BackIcon />
-      </button>
-
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 8 }}>
-          Medicamentos
-          <PillIcon size={20} color="var(--violet)" strokeWidth={1.8} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+          <button
+            onClick={() => onNavigate('home')}
+            aria-label="Volver"
+            style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', flexShrink: 0 }}
+          >
+            <BackIcon />
+          </button>
+          <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 8 }}>
+            Medicamentos
+            <PillIcon size={20} color="var(--violet)" strokeWidth={1.8} />
+          </div>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
           <button
