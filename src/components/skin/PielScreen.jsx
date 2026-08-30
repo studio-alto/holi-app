@@ -119,11 +119,11 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
           placeholder="Agregar paso personalizado..."
           value={state.newStepText}
           onChange={setNewStepText}
-          style={{ flex: 1, padding: '12px 14px', borderRadius: 12, border: '1px solid var(--border)', fontSize: 16, background: 'var(--surface)' }}
+          style={{ flex: 1, minWidth: 0, padding: '12px 14px', borderRadius: 12, border: '1px solid var(--border)', fontSize: 16, background: 'var(--surface)' }}
         />
         <button
           onClick={addSkinStep}
-          style={{ padding: '12px 16px', background: 'linear-gradient(90deg,#FFECD2,#FCB69F)', color: '#7a3d1e', border: 'none', borderRadius: 999, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
+          style={{ flexShrink: 0, padding: '12px 16px', background: 'linear-gradient(90deg,#FFECD2,#FCB69F)', color: '#7a3d1e', border: 'none', borderRadius: 999, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
         >
           Añadir
         </button>

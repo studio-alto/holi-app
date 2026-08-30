@@ -52,7 +52,7 @@ export default function Step2Water({ state, update, onNext, onBack }) {
             placeholder="Otra capacidad (ml)"
             value={state.customThermoInput}
             onChange={(e) => update({ customThermoInput: e.target.value })}
-            style={{ flex: 1, padding: '11px 14px', borderRadius: 12, border: '1px solid var(--border)', fontSize: 16, background: 'var(--surface)' }}
+            style={{ flex: 1, minWidth: 0, padding: '11px 14px', borderRadius: 12, border: '1px solid var(--border)', fontSize: 16, background: 'var(--surface)' }}
           />
           <button
             type="button"
