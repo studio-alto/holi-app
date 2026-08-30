@@ -22,21 +22,24 @@ function TabButton({ id, label, Icon, active, onSelect }) {
 
 // Fixed to the viewport (not the page) so it stays put while content scrolls —
 // same centered 600px column as .phone-card, see FixedOverlayLayer for why
-// `fixed` (not `sticky`) is what actually works here.
+// `fixed` (not `sticky`) is what actually works here. Floats as a rounded pill
+// with margin on all sides (reference image), rather than a flush full-bleed bar.
 export default function BottomNav({ isActive, onSelect, onDetails }) {
   return (
     <div
       style={{
         position: 'fixed',
-        bottom: 0,
+        bottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: '100%',
-        maxWidth: 600,
+        width: 'calc(100% - 32px)',
+        maxWidth: 568,
         background: '#000000',
+        borderRadius: 999,
+        boxShadow: '0 10px 28px rgba(0,0,0,0.22)',
         display: 'flex',
         alignItems: 'center',
-        padding: '8px 4px calc(8px + env(safe-area-inset-bottom, 0px))',
+        padding: '10px 6px',
         zIndex: 20,
         flex: 'none',
       }}
@@ -64,8 +67,9 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
           width: 52,
           height: 52,
           borderRadius: '50%',
-          background: 'var(--rose)',
+          background: 'var(--sky)',
           border: '4px solid var(--bg)',
+          boxShadow: '0 4px 12px rgba(145,194,244,0.5)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
