@@ -1,4 +1,4 @@
-import { DropIcon, PillIcon, ExerciseIcon, SunMoonIcon, CircleProgressIcon } from '../icons/Icons';
+import { DropIcon, PillIcon, ExerciseIcon, SkinIcon, CircleProgressIcon } from '../icons/Icons';
 
 const LEFT_TABS = [
   { id: 'agua', label: 'Agua', Icon: DropIcon, activeColor: 'var(--water)' },
@@ -6,7 +6,7 @@ const LEFT_TABS = [
 ];
 const RIGHT_TABS = [
   { id: 'ejercicio', label: 'Ejercicio', Icon: ExerciseIcon, activeColor: '#6fae82' },
-  { id: 'piel', label: 'Piel', Icon: SunMoonIcon, activeColor: '#e2925a' },
+  { id: 'piel', label: 'Piel', Icon: SkinIcon, activeColor: '#e2925a' },
 ];
 
 function TabButton({ id, label, Icon, activeColor, active, onSelect }) {
@@ -15,9 +15,10 @@ function TabButton({ id, label, Icon, activeColor, active, onSelect }) {
     <button
       aria-label={label}
       onClick={() => onSelect(id)}
-      style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px 2px', background: 'none', border: 'none', cursor: 'pointer', minHeight: 44, borderRadius: 999 }}
+      style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, padding: '8px 2px', background: 'none', border: 'none', cursor: 'pointer', minHeight: 44, borderRadius: 999 }}
     >
       <Icon size={27} color={color} strokeWidth={2.1} />
+      <div style={{ width: 4, height: 4, borderRadius: '50%', background: active ? activeColor : 'transparent' }} />
     </button>
   );
 }
