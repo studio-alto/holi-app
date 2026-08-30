@@ -17,7 +17,7 @@ function TabButton({ id, label, Icon, activeColor, active, onSelect }) {
       onClick={() => onSelect(id)}
       style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px 2px', background: 'none', border: 'none', cursor: 'pointer', minHeight: 44, borderRadius: 999 }}
     >
-      <Icon size={22} color={color} strokeWidth={1.8} />
+      <Icon size={27} color={color} strokeWidth={1.8} />
     </button>
   );
 }
@@ -82,7 +82,7 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
           cursor: 'pointer',
         }}
       >
-        <CircleProgressIcon size={22} color="#FFFFFF" accent="#FFFFFF" />
+        <CircleProgressIcon size={26} color="#FFFFFF" accent="#FFFFFF" />
       </button>
     </div>
   );
