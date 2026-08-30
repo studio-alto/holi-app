@@ -67,7 +67,7 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
         onClick={onDetails}
         style={{
           position: 'absolute',
-          top: -22,
+          top: -10,
           left: '50%',
           transform: 'translateX(-50%)',
           width: 52,
