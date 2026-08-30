@@ -1,8 +1,7 @@
 import { useEffect, useMemo } from 'react';
-import { FlameStreakIcon, CircleProgressIcon, BellIcon } from '../icons/Icons';
+import { FlameStreakIcon, BellIcon, GearIcon } from '../icons/Icons';
 import WeekStrip from './WeekStrip';
 import BottomNav from './BottomNav';
-import SaludModal from './SaludModal';
 import Home from './Home';
 import PlaceholderScreen from './PlaceholderScreen';
 import AguaScreen from '../water/AguaScreen';
@@ -50,32 +49,33 @@ export default function MainApp({ state, update, addToast, resetState }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scheduleFingerprint, state.notif.master]);
 
-  const goTo = (screen) => update({ screen, saludModalOpen: false });
+  const goTo = (screen) => update({ screen });
   const isHome = state.screen === 'home';
   const showQuote = !NO_WEEK_STRIP_SCREENS.has(state.screen);
-
-  const openSalud = () => update({ saludModalOpen: true });
-  const closeSalud = () => update({ saludModalOpen: false });
-
-  const handleTabSelect = (id) => {
-    if (id === 'salud') return openSalud();
-    goTo(id);
-  };
-  const isTabActive = (id) => {
-    if (id === 'salud') return state.saludModalOpen;
-    return state.screen === id;
-  };
+  const isTabActive = (id) => state.screen === id;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: '100%' }}>
       <div style={{ position: 'sticky', top: 0, zIndex: 20, backdropFilter: 'blur(8px)', padding: '16px 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#F7F1E3EB' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ fontWeight: 300, fontSize: 24, lineHeight: 1, letterSpacing: 3, textTransform: 'uppercase', color: '#000000' }}>HOLÍ</div>
+          <button
+            onClick={() => goTo('home')}
+            aria-label="Inicio"
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 300, fontSize: 24, lineHeight: 1, letterSpacing: 3, textTransform: 'uppercase', color: '#000000' }}
+          >
+            HOLÍ
+          </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'linear-gradient(90deg, #91C2F4, #3788D3)', color: '#FFFFFF', padding: '5px 10px', borderRadius: 30, fontSize: 12.5, fontWeight: 100 }}>
               <FlameStreakIcon size={14} color="#FFFFFF" /> {state.streak} días
             </div>
             <div style={{ fontSize: 12, color: 'var(--text-3)' }}>{label}</div>
+            <button onClick={() => goTo('notificaciones')} aria-label="Notificaciones" style={{ width: 34, height: 34, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', opacity: 0.8, flexShrink: 0 }}>
+              <BellIcon size={16} />
+            </button>
+            <button onClick={() => goTo('settings')} aria-label="Configuración" style={{ width: 34, height: 34, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', opacity: 0.8, flexShrink: 0 }}>
+              <GearIcon size={16} color="var(--text-2)" />
+            </button>
           </div>
         </div>
       </div>
@@ -83,14 +83,8 @@ export default function MainApp({ state, update, addToast, resetState }) {
       <div className="fade-in-up" style={{ flex: 1, overflowY: 'auto', padding: '16px 20px calc(110px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
         {showQuote && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <button onClick={() => goTo('progreso')} aria-label="Progreso" style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', opacity: 0.8 }}>
-                <CircleProgressIcon />
-              </button>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: '8px 16px', fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{label}</div>
-              <button onClick={() => goTo('settings')} aria-label="Notificaciones" style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', opacity: 0.8 }}>
-                <BellIcon />
-              </button>
             </div>
             <WeekStrip days={weekDays} />
           </div>
@@ -121,7 +115,7 @@ export default function MainApp({ state, update, addToast, resetState }) {
         )}
       </div>
 
-      <BottomNav isActive={isTabActive} onSelect={handleTabSelect} onDetails={() => goTo('progreso')} />
+      <BottomNav isActive={isTabActive} onSelect={goTo} onDetails={() => goTo('progreso')} />
 
       {state.medModalOpen && (
         <MedFormModal
@@ -134,8 +128,6 @@ export default function MainApp({ state, update, addToast, resetState }) {
       )}
 
       <AlarmToast alarm={state.alarmToast} onTaken={alarm.alarmTaken} onSnooze={alarm.alarmSnooze} onCancel={alarm.alarmCancel} />
-
-      {state.saludModalOpen && <SaludModal state={state} onClose={closeSalud} onNavigate={goTo} />}
     </div>
   );
 }

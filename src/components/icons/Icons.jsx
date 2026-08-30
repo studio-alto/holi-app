@@ -48,6 +48,18 @@ export function SkinIcon({ size = 18, color = 'currentColor', strokeWidth = 1.6 
   );
 }
 
+// Sun (mañana) + moon (noche) combined — used where "Piel" needs to read as the
+// AM/PM skincare routine rather than the sparkle used for the screen's own title.
+export function SunMoonIcon({ size = 18, color = 'currentColor', strokeWidth = 1.6 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="8" r="2.6" />
+      <path d="M8 2.5v1.4M8 12.1v1.4M2.5 8h1.4M4.3 4.3l1 1M4.3 11.7l1-1" />
+      <path d="M20.5 15.8A5.2 5.2 0 0 1 14.8 10a4.1 4.1 0 0 0 6.8 6.8 5.2 5.2 0 0 1-1.1-1z" />
+    </svg>
+  );
+}
+
 export function FlameStreakIcon({ size = 18, color = 'currentColor', strokeWidth = 1.7 }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
