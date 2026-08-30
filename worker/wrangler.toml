@@ -1,0 +1,16 @@
+name = "holi-push"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+# @pushforge/builder uses node:crypto internally for VAPID signing.
+compatibility_flags = ["nodejs_compat"]
+
+# Runs every minute so scheduled reminders fire on the right HH:MM.
+# Cloudflare's free tier easily covers 1440 invocations/day.
+[triggers]
+crons = ["* * * * *"]
+
+# Created with: wrangler kv namespace create HOLI_PUSH
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "HOLI_PUSH"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

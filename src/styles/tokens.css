@@ -1,0 +1,73 @@
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0}
+::-webkit-scrollbar{display:none}
+
+:root{
+  --bg:#F7F1E3;--surface:#ffffff;--surface2:#F0E9D8;--border:#EFE6D2;
+  --text:#1a1a1a;--text-2:#8A8474;--text-3:#8A8474;
+
+  --rose:#d4847a;--rose-dark:#b8624f;--rose-text:#b15442;
+  --violet:#9b8ec4;--violet-text:#7a6da8;
+  --sage:#7aab90;--sage-text:#3f6950;
+  --gold:#c4954a;--gold-text:#7a6120;
+  --peach:#e8a87a;--rose-light:#f7e9e6;--link:#3a6a8f;
+
+  --water:#7AB2D4;--water-dark:#4c85ab;--water-light:#eaf4fb;
+  --sky:#91C2F4;--sky-light:#C8ECFB;--sky-dark:#3788D3;
+
+  --card-agua:linear-gradient(135deg,#eaf4fb,#c9e3f5);
+  --card-meds:linear-gradient(135deg,#f6f3ff,#dad5f8);
+  --card-ejercicio:linear-gradient(135deg,#eef8df,#dbecbe);
+  --card-piel:linear-gradient(135deg,#FFECD2,#FCB69F);
+
+  --grad-primary:linear-gradient(90deg,#d4847a,#e8a87a);
+  --grad-water:linear-gradient(90deg,#7AB2D4,#a9d3ea);
+  --grad-soft:linear-gradient(135deg,#f7e9e6,#f5f0e8);
+  --grad-notif:linear-gradient(90deg,#d4847a,#9b8ec4);
+  --grad-sky:linear-gradient(90deg,#C8ECFB,#91C2F4);
+  --grad-welcome:linear-gradient(165deg,#C8ECFB,#91C2F4);
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select,textarea{font-family:inherit}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,20px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes popScale{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes celebrate{0%{transform:scale(0.6);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-4px);opacity:1}}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes barShimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+.fade-in-up{animation:fadeInUp 0.25s ease}
+.celebrate{animation:celebrate 0.7s ease}
+.pop-scale{animation:popScale 1.6s ease infinite}
+
+.app-shell{
+  min-height:100vh;
+  width:100%;
+  background:var(--bg);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.phone-card{
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
+  background:var(--bg);
+  overflow:hidden;
+  position:relative;
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
