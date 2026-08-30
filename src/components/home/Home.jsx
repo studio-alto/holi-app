@@ -73,21 +73,6 @@ export default function Home({ state, onNavigate }) {
           <ArrowRightIcon size={16} color="#8A8474" />
         </div>
       </button>
-
-      <div style={{ display: 'flex', gap: 10 }}>
-        <button
-          onClick={() => onNavigate('progreso')}
-          style={{ flex: 1, padding: '12px 12px', background: '#000000', border: 'none', color: '#FFFFFF', borderRadius: 999, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
-        >
-          Progreso
-        </button>
-        <button
-          onClick={() => onNavigate('settings')}
-          style={{ flex: 1, padding: '12px 12px', background: 'transparent', border: '1.5px solid #000000', color: '#000000', borderRadius: 999, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
-        >
-          Configuración
-        </button>
-      </div>
     </div>
   );
 }
