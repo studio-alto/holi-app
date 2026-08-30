@@ -39,7 +39,7 @@ export default function Step2Water({ state, update, onNext, onBack }) {
           aria-label="Capacidad del termo"
           value={state.thermoSize}
           onChange={(e) => update({ thermoSize: e.target.value, customThermoInput: '' })}
-          style={{ width: '100%', marginTop: 6, padding: '12px 14px', borderRadius: 12, border: '1px solid var(--border)', background: 'var(--surface)', fontSize: 14, color: 'var(--text)' }}
+          style={{ width: '100%', marginTop: 6, padding: '12px 14px', borderRadius: 12, border: '1px solid var(--border)', background: 'var(--surface)', fontSize: 16, color: 'var(--text)' }}
         >
           {thermoSizeOptions.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
@@ -52,7 +52,7 @@ export default function Step2Water({ state, update, onNext, onBack }) {
             placeholder="Otra capacidad (ml)"
             value={state.customThermoInput}
             onChange={(e) => update({ customThermoInput: e.target.value })}
-            style={{ flex: 1, padding: '11px 14px', borderRadius: 12, border: '1px solid var(--border)', fontSize: 13.5, background: 'var(--surface)' }}
+            style={{ flex: 1, padding: '11px 14px', borderRadius: 12, border: '1px solid var(--border)', fontSize: 16, background: 'var(--surface)' }}
           />
           <button
             type="button"

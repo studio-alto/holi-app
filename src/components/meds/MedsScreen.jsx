@@ -2,9 +2,34 @@ import { BackIcon, PillIcon, BellIcon } from '../icons/Icons';
 import { useMedsActions } from '../../state/useMedsActions';
 import { useAlarmActions } from '../../state/useAlarmActions';
 
+function formatTime12h(time) {
+  const [h, m] = time.split(':').map(Number);
+  const period = h >= 12 ? 'pm' : 'am';
+  const hour12 = h % 12 === 0 ? 12 : h % 12;
+  return `${hour12}:${String(m).padStart(2, '0')} ${period}`;
+}
+
+// The next medication still pending today by scheduled time, or — if every timed
+// medication for today is already taken or past — the earliest one tomorrow.
+function getNextMed(meds) {
+  const withTime = meds.filter((m) => m.time && !m.taken);
+  if (withTime.length === 0) return null;
+  const now = new Date();
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  const toMinutes = (t) => {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  };
+  const upcomingToday = withTime.filter((m) => toMinutes(m.time) >= nowMinutes).sort((a, b) => toMinutes(a.time) - toMinutes(b.time));
+  if (upcomingToday.length > 0) return { med: upcomingToday[0], tomorrow: false };
+  const earliest = [...withTime].sort((a, b) => toMinutes(a.time) - toMinutes(b.time));
+  return { med: earliest[0], tomorrow: true };
+}
+
 export default function MedsScreen({ state, update, addToast, onNavigate }) {
   const { editMed, openAddMed, toggleMedTaken, removeMed, toggleMedEdit } = useMedsActions(state, update, addToast);
   const { triggerMedAlarm } = useAlarmActions(state, update, addToast);
+  const nextMed = getNextMed(state.meds);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -38,6 +63,25 @@ export default function MedsScreen({ state, update, addToast, onNavigate }) {
           </button>
         </div>
       </div>
+
+      {nextMed && (
+        <div style={{ background: '#D6C6F5', borderRadius: 18, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <PillIcon size={19} color="#5f4a91" strokeWidth={1.8} />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#5f4a91', letterSpacing: '0.03em' }}>
+              PRÓXIMO MEDICAMENTO{nextMed.tomorrow ? ' · MAÑANA' : ''}
+            </div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#000000', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {nextMed.med.name}
+            </div>
+            <div style={{ fontSize: 12.5, color: '#5f4a91', marginTop: 1 }}>
+              {formatTime12h(nextMed.med.time)}{nextMed.med.dose ? ` · ${nextMed.med.dose}` : ''}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 18, padding: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: 'var(--text-2)' }}>

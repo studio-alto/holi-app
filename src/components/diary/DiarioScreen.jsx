@@ -50,7 +50,7 @@ export default function DiarioScreen({ state, update, addToast, onNavigate }) {
           placeholder="Escribe lo que quieras recordar de hoy..."
           value={state.diary.text}
           onChange={setDiaryText}
-          style={{ width: '100%', marginTop: 12, minHeight: 90, padding: '12px 14px', borderRadius: 12, border: '1px solid var(--border)', fontFamily: 'inherit', fontSize: 14, resize: 'vertical', background: 'var(--surface2)' }}
+          style={{ width: '100%', marginTop: 12, minHeight: 90, padding: '12px 14px', borderRadius: 12, border: '1px solid var(--border)', fontFamily: 'inherit', fontSize: 16, resize: 'vertical', background: 'var(--surface2)' }}
         />
         <button
           onClick={saveDiaryEntry}

@@ -60,7 +60,7 @@ export default function MedFormModal({ title, form, onChange, onCancel, onSave }
               placeholder="Ej. Vitamina B6"
               value={form.name}
               onChange={set('name')}
-              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 14, background: '#FFFFFF' }}
+              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 16, background: '#FFFFFF' }}
             />
           </div>
 
@@ -80,7 +80,7 @@ export default function MedFormModal({ title, form, onChange, onCancel, onSave }
               placeholder="Ej. 1 píldora"
               value={form.dose}
               onChange={set('dose')}
-              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 14, background: '#FFFFFF' }}
+              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 16, background: '#FFFFFF' }}
             />
           </div>
 
@@ -100,7 +100,7 @@ export default function MedFormModal({ title, form, onChange, onCancel, onSave }
               type="time"
               value={form.time}
               onChange={set('time')}
-              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 14, background: '#FFFFFF' }}
+              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 16, background: '#FFFFFF' }}
             />
           </div>
 
@@ -111,7 +111,7 @@ export default function MedFormModal({ title, form, onChange, onCancel, onSave }
               placeholder="Opcional"
               value={form.notes}
               onChange={set('notes')}
-              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 14, background: '#FFFFFF' }}
+              style={{ width: '100%', padding: '13px 14px', borderRadius: 999, border: '0.5px solid var(--border)', fontSize: 16, background: '#FFFFFF' }}
             />
           </div>
 

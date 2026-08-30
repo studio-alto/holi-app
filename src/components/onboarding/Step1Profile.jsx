@@ -19,7 +19,7 @@ export default function Step1Profile({ state, update, onNext, onBack }) {
           placeholder="Ej: 25"
           value={state.obAge}
           onChange={(e) => update({ obAge: e.target.value })}
-          style={{ width: '100%', marginTop: 8, padding: 14, borderRadius: 12, border: '0.5px solid var(--border)', fontSize: 14, background: 'var(--surface2)' }}
+          style={{ width: '100%', marginTop: 8, padding: 14, borderRadius: 12, border: '0.5px solid var(--border)', fontSize: 16, background: 'var(--surface2)' }}
         />
       </div>
 
@@ -29,7 +29,7 @@ export default function Step1Profile({ state, update, onNext, onBack }) {
           aria-label="País"
           value={state.obCountry}
           onChange={(e) => update({ obCountry: e.target.value })}
-          style={{ width: '100%', marginTop: 8, padding: 14, borderRadius: 12, border: '0.5px solid var(--border)', fontSize: 14, background: 'var(--surface2)', color: 'var(--text)' }}
+          style={{ width: '100%', marginTop: 8, padding: 14, borderRadius: 12, border: '0.5px solid var(--border)', fontSize: 16, background: 'var(--surface2)', color: 'var(--text)' }}
         >
           <option value="">Selecciona tu país</option>
           {countryOptions.map((cn) => (

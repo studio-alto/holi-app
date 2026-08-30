@@ -40,7 +40,7 @@ export default function Step0Welcome({ state, update, onNext, onSkip }) {
             placeholder="Tu nombre..."
             value={state.obName}
             onChange={(e) => update({ obName: e.target.value })}
-            style={{ width: '100%', marginTop: 7, padding: '14px 16px', borderRadius: 156, border: 'none', fontSize: 14, background: 'rgba(255,255,255,0.92)', color: '#1a1a1a' }}
+            style={{ width: '100%', marginTop: 7, padding: '14px 16px', borderRadius: 156, border: 'none', fontSize: 16, background: 'rgba(255,255,255,0.92)', color: '#1a1a1a' }}
           />
         </div>
 
@@ -52,7 +52,7 @@ export default function Step0Welcome({ state, update, onNext, onSkip }) {
             placeholder="tu@correo.com"
             value={state.obEmail}
             onChange={(e) => update({ obEmail: e.target.value })}
-            style={{ width: '100%', marginTop: 7, padding: '14px 16px', borderRadius: 305, border: 'none', fontSize: 14, background: 'rgba(255,255,255,0.92)', color: '#1a1a1a' }}
+            style={{ width: '100%', marginTop: 7, padding: '14px 16px', borderRadius: 305, border: 'none', fontSize: 16, background: 'rgba(255,255,255,0.92)', color: '#1a1a1a' }}
           />
         </div>
 

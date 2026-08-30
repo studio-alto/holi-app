@@ -206,8 +206,8 @@ export default function SettingsScreen({ state, update, addToast, onNavigate, re
           {state.notif.dnd && (
             <>
               <div style={{ display: 'flex', gap: 8 }}>
-                <input aria-label="Hora desde" type="time" value={state.notif.dndFrom} onChange={setDndFrom} style={{ flex: 1, padding: 10, borderRadius: 10, border: '0.5px solid var(--border)', fontSize: 12.5, background: 'var(--surface2)' }} />
-                <input aria-label="Hora hasta" type="time" value={state.notif.dndTo} onChange={setDndTo} style={{ flex: 1, padding: 10, borderRadius: 10, border: '0.5px solid var(--border)', fontSize: 12.5, background: 'var(--surface2)' }} />
+                <input aria-label="Hora desde" type="time" value={state.notif.dndFrom} onChange={setDndFrom} style={{ flex: 1, padding: 10, borderRadius: 10, border: '0.5px solid var(--border)', fontSize: 16, background: 'var(--surface2)' }} />
+                <input aria-label="Hora hasta" type="time" value={state.notif.dndTo} onChange={setDndTo} style={{ flex: 1, padding: 10, borderRadius: 10, border: '0.5px solid var(--border)', fontSize: 16, background: 'var(--surface2)' }} />
               </div>
               <div style={{ display: 'flex', gap: 6, justifyContent: 'space-between' }}>
                 {dndDayChips.map((dd) => (
