@@ -35,42 +35,42 @@ export default function Home({ state, onNavigate }) {
           title="Agua"
           value={`${state.waterTodayMl} ml`}
           unit="hoy"
-          iconBg={{ bubble: '#AFD3F0' }}
-          icon={<DropIcon size={20} color="#1f5a86" strokeWidth={1.8} />}
+          bg="#C9E4F0"
+          icon={<DropIcon size={19} color="#1B5C7A" strokeWidth={1.8} />}
           onClick={() => onNavigate('agua')}
         />
         <CategoryCard
           title="Medicamentos"
           value={`${medWeekPct}%`}
           unit="semana"
-          iconBg={{ bubble: '#D6C6F5' }}
-          icon={<PillIcon size={20} color="#5f4a91" strokeWidth={1.8} />}
+          bg="#DED2EE"
+          icon={<PillIcon size={19} color="#5B3E82" strokeWidth={1.8} />}
           onClick={() => onNavigate('meds')}
         />
         <CategoryCard
           title="Ejercicio"
           value={`${exDoneCount}/${exTotalCount}`}
           unit="hoy"
-          iconBg={{ bubble: '#C3E293' }}
-          icon={<ExerciseIcon size={20} color="#456332" strokeWidth={1.8} />}
+          bg="#D8E8C4"
+          icon={<ExerciseIcon size={19} color="#456022" strokeWidth={1.8} />}
           onClick={() => onNavigate('ejercicio')}
         />
         <CategoryCard
           title="Piel"
           value={homeSkinNextText}
-          iconBg={{ bubble: '#F7C89A' }}
-          icon={<SkinIcon size={20} color="#a35b23" strokeWidth={1.8} />}
+          bg="#F3E1CC"
+          icon={<SkinIcon size={19} color="#8A5A24" strokeWidth={1.8} />}
           onClick={() => onNavigate('piel')}
         />
       </div>
 
       <button
         onClick={() => onNavigate('diario')}
-        style={{ textAlign: 'left', border: '0.5px solid #EFE9D8', borderRadius: 18, padding: 16, cursor: 'pointer', backgroundColor: '#FFFFFF' }}
+        style={{ textAlign: 'left', border: '0.5px solid var(--border)', borderRadius: 18, padding: 16, cursor: 'pointer', backgroundColor: 'var(--surface)' }}
       >
-        <div style={{ fontSize: 14, color: '#8A8474', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ fontSize: 14, color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: 8 }}>
           ¿Cómo te sientes hoy? Escribe en tu diario
-          <ArrowRightIcon size={16} color="#8A8474" />
+          <ArrowRightIcon size={16} color="var(--text-2)" />
         </div>
       </button>
     </div>

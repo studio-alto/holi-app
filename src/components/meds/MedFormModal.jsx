@@ -32,7 +32,7 @@ export default function MedFormModal({ title, form, onChange, onCancel, onSave }
   return (
     <FixedOverlayLayer zIndex={70}>
     <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)', display: 'flex', alignItems: 'flex-end', pointerEvents: 'auto' }}>
-      <div style={{ background: '#F7F1E3', width: '100%', borderRadius: '22px 22px 0 0', padding: '18px 20px 26px', maxHeight: '90%', overflowY: 'auto' }}>
+      <div style={{ background: 'var(--bg)', width: '100%', borderRadius: '22px 22px 0 0', padding: '18px 20px 26px', maxHeight: '90%', overflowY: 'auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
           <button
             onClick={onCancel}

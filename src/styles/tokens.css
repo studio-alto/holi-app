@@ -5,8 +5,8 @@ body{margin:0}
 ::-webkit-scrollbar{display:none}
 
 :root{
-  --bg:#F7F1E3;--surface:#ffffff;--surface2:#F0E9D8;--border:#EFE6D2;
-  --text:#1a1a1a;--text-2:#8A8474;--text-3:#8A8474;
+  --bg:#EEF1F0;--surface:#ffffff;--surface2:#E7EBE9;--border:#E3E7E5;
+  --text:#141414;--text-2:#8A8F8C;--text-3:#8A8F8C;
 
   --rose:#d4847a;--rose-dark:#b8624f;--rose-text:#b15442;
   --violet:#9b8ec4;--violet-text:#7a6da8;

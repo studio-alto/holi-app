@@ -28,7 +28,7 @@ export default function AlarmToast({ alarm, onTaken, onSnooze, onCancel }) {
           left: 14,
           right: 14,
           bottom: 24,
-          background: '#fff',
+          background: 'var(--surface)',
           borderRadius: 18,
           padding: 16,
           boxShadow: '0 10px 30px rgba(0,0,0,0.18)',

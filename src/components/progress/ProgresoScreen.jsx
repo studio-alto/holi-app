@@ -46,14 +46,14 @@ export default function ProgresoScreen({ state, onNavigate }) {
 
       <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div style={{ background: 'linear-gradient(90deg, #C7EAFA, #91C2F4)', borderRadius: 20, padding: 18, color: '#000000', display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ background: '#C9E4F0', borderRadius: 20, padding: 18, color: '#000000', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ fontSize: 13, fontWeight: 700 }}>Racha</div>
-              <FlameStreakIcon size={18} color="#fff" strokeWidth={1.8} />
+              <FlameStreakIcon size={18} color="#1B5C7A" strokeWidth={1.8} />
             </div>
             <div style={{ position: 'relative', width: 104, height: 104, alignSelf: 'center' }}>
-              <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: `conic-gradient(#fff ${streakRingPct}%, rgba(255,255,255,0.28) 0)` }} />
-              <div style={{ position: 'absolute', inset: 10, borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#96C6F5' }}>
+              <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: `conic-gradient(#1B5C7A ${streakRingPct}%, rgba(255,255,255,0.7) 0)` }} />
+              <div style={{ position: 'absolute', inset: 10, borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.65)' }}>
                 <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1 }}>{state.streak}</div>
                 <div style={{ fontSize: 10, opacity: 0.85 }}>días</div>
               </div>

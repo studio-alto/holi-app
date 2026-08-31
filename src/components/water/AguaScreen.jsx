@@ -45,12 +45,12 @@ export default function AguaScreen({ state, update, addToast, onNavigate }) {
       </div>
 
       <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 20, padding: 20 }}>
-        <div style={{ fontSize: 12.5, fontWeight: 600, color: '#8A8474', letterSpacing: 0.3 }}>AGUA HOY</div>
+        <div style={{ fontSize: 12.5, fontWeight: 600, color: '#8A8F8C', letterSpacing: 0.3 }}>AGUA HOY</div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 4 }}>
           <div style={{ fontSize: 34, fontWeight: 700, color: '#000000', lineHeight: 1 }}>{glassesDone} de {glassesTotal}</div>
-          <div style={{ fontSize: 14, fontWeight: 500, color: '#8A8474' }}>vasos</div>
+          <div style={{ fontSize: 14, fontWeight: 500, color: '#8A8F8C' }}>vasos</div>
         </div>
-        <div style={{ fontSize: 13, color: '#8A8474', marginTop: 8, lineHeight: 1.5 }}>
+        <div style={{ fontSize: 13, color: '#8A8F8C', marginTop: 8, lineHeight: 1.5 }}>
           {msg === '¡Meta cumplida! Sigue así'
             ? `Llevas ${waterTodayMl} ml y ya cumpliste tu meta de ${waterGoalMl} ml. `
             : `Llevas ${waterTodayMl} ml de tu meta de ${waterGoalMl} ml. `}
@@ -66,11 +66,11 @@ export default function AguaScreen({ state, update, addToast, onNavigate }) {
                 style={{
                   width: 34, height: 34, borderRadius: '50%', flex: 'none',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: filled ? '#AFD3F0' : 'transparent',
+                  background: filled ? '#C9E4F0' : 'transparent',
                   border: filled ? 'none' : '1.5px solid var(--border)',
                 }}
               >
-                <DropIcon size={16} color={filled ? '#1f5a86' : 'var(--border)'} strokeWidth={1.8} />
+                <DropIcon size={16} color={filled ? '#1B5C7A' : 'var(--border)'} strokeWidth={1.8} />
               </div>
             );
           })}
@@ -109,21 +109,21 @@ export default function AguaScreen({ state, update, addToast, onNavigate }) {
       </button>
 
       <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 18, padding: 16, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#AFD3F0', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
-          <DropIcon size={20} color="#1f5a86" strokeWidth={1.8} />
+        <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#C9E4F0', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+          <DropIcon size={20} color="#1B5C7A" strokeWidth={1.8} />
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', textAlign: 'center' }}>
           <div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#000000' }}>{avgMl}</div>
-            <div style={{ fontSize: 10.5, color: '#8A8474', marginTop: 2 }}>PROMEDIO</div>
+            <div style={{ fontSize: 10.5, color: '#8A8F8C', marginTop: 2 }}>PROMEDIO</div>
           </div>
           <div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#000000' }}>{minMl}</div>
-            <div style={{ fontSize: 10.5, color: '#8A8474', marginTop: 2 }}>MÍNIMO</div>
+            <div style={{ fontSize: 10.5, color: '#8A8F8C', marginTop: 2 }}>MÍNIMO</div>
           </div>
           <div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#000000' }}>{maxMl}</div>
-            <div style={{ fontSize: 10.5, color: '#8A8474', marginTop: 2 }}>MÁXIMO</div>
+            <div style={{ fontSize: 10.5, color: '#8A8F8C', marginTop: 2 }}>MÁXIMO</div>
           </div>
         </div>
       </div>
@@ -133,7 +133,7 @@ export default function AguaScreen({ state, update, addToast, onNavigate }) {
         {history.map((d, i) => (
           <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, flex: 1 }}>
             <div style={{ width: '100%', height: 60, background: 'var(--surface2)', borderRadius: 6, display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
-              <div style={{ width: '100%', height: `${d.pct}%`, background: '#AFD3F0' }} />
+              <div style={{ width: '100%', height: `${d.pct}%`, background: '#C9E4F0' }} />
             </div>
             <div style={{ fontSize: 11, color: 'var(--text-3)' }}>{d.day}</div>
           </div>

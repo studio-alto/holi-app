@@ -58,7 +58,7 @@ export default function MedsScreen({ state, update, addToast, onNavigate }) {
           <button
             aria-label="Agregar medicamento"
             onClick={openAddMed}
-            style={{ width: 38, height: 38, borderRadius: '50%', color: '#5f4a91', border: 'none', fontSize: 19, cursor: 'pointer', backgroundColor: '#D6C6F5' }}
+            style={{ width: 38, height: 38, borderRadius: '50%', color: '#5B3E82', border: 'none', fontSize: 19, cursor: 'pointer', backgroundColor: '#DED2EE' }}
           >
             +
           </button>
@@ -66,18 +66,18 @@ export default function MedsScreen({ state, update, addToast, onNavigate }) {
       </div>
 
       {nextMed && (
-        <div style={{ background: '#D6C6F5', borderRadius: 18, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <PillIcon size={19} color="#5f4a91" strokeWidth={1.8} />
+        <div style={{ background: '#DED2EE', borderRadius: 18, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <PillIcon size={19} color="#5B3E82" strokeWidth={1.8} />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#5f4a91', letterSpacing: '0.03em' }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#5B3E82', letterSpacing: '0.03em' }}>
               PRÓXIMO MEDICAMENTO{nextMed.tomorrow ? ' · MAÑANA' : ''}
             </div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#000000', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#141414', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {nextMed.med.name}
             </div>
-            <div style={{ fontSize: 12.5, color: '#5f4a91', marginTop: 1 }}>
+            <div style={{ fontSize: 12.5, color: '#5B3E82', marginTop: 1 }}>
               {formatTime12h(nextMed.med.time)}{nextMed.med.dose ? ` · ${nextMed.med.dose}` : ''}
             </div>
           </div>

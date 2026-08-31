@@ -21,22 +21,22 @@ export default function EjercicioScreen({ state, update, addToast, onNavigate })
         </button>
         <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 8 }}>
           Ejercicio
-          <ExerciseIcon size={20} color="#6fae82" strokeWidth={1.8} />
+          <ExerciseIcon size={20} color="#456022" strokeWidth={1.8} />
         </div>
       </div>
 
-      <div style={{ background: 'linear-gradient(135deg, #E7F5DD, #D2F3E2)', borderRadius: 20, padding: 18, display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{ background: '#D8E8C4', borderRadius: 20, padding: 18, display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ position: 'relative', width: 76, height: 76, flex: 'none' }}>
-          <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: `conic-gradient(#6fae82 ${exWeekPct}%, rgba(255,255,255,0.6) 0)` }} />
-          <div style={{ position: 'absolute', inset: 7, borderRadius: '50%', background: '#eef7e6', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ fontSize: 20, fontWeight: 700, color: '#1a1a1a', lineHeight: 1 }}>{exWeekDaysCount}</div>
-            <div style={{ fontSize: 9.5, color: '#1a1a1a', opacity: 0.65 }}>Días</div>
+          <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: `conic-gradient(#456022 ${exWeekPct}%, rgba(255,255,255,0.6) 0)` }} />
+          <div style={{ position: 'absolute', inset: 7, borderRadius: '50%', background: '#EEF6E2', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#141414', lineHeight: 1 }}>{exWeekDaysCount}</div>
+            <div style={{ fontSize: 9.5, color: '#141414', opacity: 0.65 }}>Días</div>
           </div>
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a' }}>¡Has mantenido el ritmo!</div>
-          <div style={{ fontSize: 12, color: '#1a1a1a', opacity: 0.7, marginTop: 4, lineHeight: 1.4 }}>Entrenaste {exWeekDaysCount} de 7 días esta semana.</div>
-          <div style={{ display: 'inline-block', marginTop: 8, background: 'rgba(255,255,255,0.6)', borderRadius: 20, padding: '4px 10px', fontSize: 11, color: '#1a1a1a' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#141414' }}>¡Has mantenido el ritmo!</div>
+          <div style={{ fontSize: 12, color: '#141414', opacity: 0.7, marginTop: 4, lineHeight: 1.4 }}>Entrenaste {exWeekDaysCount} de 7 días esta semana.</div>
+          <div style={{ display: 'inline-block', marginTop: 8, background: 'rgba(255,255,255,0.6)', borderRadius: 20, padding: '4px 10px', fontSize: 11, color: '#141414' }}>
             Racha más larga: <b>{exLongestStreak} días</b>
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function EjercicioScreen({ state, update, addToast, onNavigate })
 
       <button
         onClick={completeRoutine}
-        style={{ padding: 15, background: 'linear-gradient(90deg, #8FC79E, #6FAE82)', color: '#fff', border: 'none', borderRadius: 999, fontWeight: 500, cursor: 'pointer' }}
+        style={{ padding: 15, background: '#141414', color: '#fff', border: 'none', borderRadius: 999, fontWeight: 500, cursor: 'pointer' }}
       >
         Completar rutina(s)
       </button>

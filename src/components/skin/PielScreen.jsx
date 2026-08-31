@@ -44,7 +44,7 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
         </button>
         <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 8 }}>
           Piel
-          <SkinIcon size={20} color="#FCB69F" strokeWidth={1.8} />
+          <SkinIcon size={20} color="#8A5A24" strokeWidth={1.8} />
         </div>
       </div>
 
@@ -54,8 +54,8 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
           onClick={() => setPeriod('am')}
           style={{
             flex: 1, padding: 11, borderRadius: 999, border: 'none',
-            background: amActive ? 'linear-gradient(135deg,#FFECD2,#FCB69F)' : 'var(--surface2)',
-            color: amActive ? '#7a3d1e' : 'var(--text-2)',
+            background: amActive ? '#F3E1CC' : 'var(--surface2)',
+            color: amActive ? '#8A5A24' : 'var(--text-2)',
             fontWeight: 500, fontSize: 13.5, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
           }}
@@ -67,8 +67,8 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
           onClick={() => setPeriod('pm')}
           style={{
             flex: 1, padding: 11, borderRadius: 999, border: 'none',
-            background: !amActive ? 'linear-gradient(135deg,#FFECD2,#FCB69F)' : 'var(--surface2)',
-            color: !amActive ? '#7a3d1e' : 'var(--text-2)',
+            background: !amActive ? '#F3E1CC' : 'var(--surface2)',
+            color: !amActive ? '#8A5A24' : 'var(--text-2)',
             fontWeight: 500, fontSize: 13.5, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
           }}
@@ -82,7 +82,7 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
         <div style={{ fontSize: 13.5, fontWeight: 500, color: 'var(--text)' }}>{skinDone}/{skinTotal}</div>
       </div>
       <div style={{ height: 8, background: 'var(--surface2)', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ height: '100%', width: `${skinPct}%`, background: 'linear-gradient(90deg,#FFECD2,#FCB69F)' }} />
+        <div style={{ height: '100%', width: `${skinPct}%`, background: '#E9AF6E' }} />
       </div>
 
       {skinSteps.map((s) => (
@@ -94,8 +94,8 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
             onClick={() => toggleSkinStep(s.id)}
             style={{
               width: 22, height: 22, flex: 'none', borderRadius: '50%',
-              border: `1.5px solid ${s.done ? '#FCB69F' : 'var(--border)'}`,
-              background: s.done ? '#FCB69F' : 'transparent',
+              border: `1.5px solid ${s.done ? '#E9AF6E' : 'var(--border)'}`,
+              background: s.done ? '#E9AF6E' : 'transparent',
               cursor: 'pointer', opacity: 0.8,
             }}
           />
@@ -123,7 +123,7 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
         />
         <button
           onClick={addSkinStep}
-          style={{ flexShrink: 0, padding: '12px 16px', background: 'linear-gradient(90deg,#FFECD2,#FCB69F)', color: '#7a3d1e', border: 'none', borderRadius: 999, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
+          style={{ flexShrink: 0, padding: '12px 16px', background: '#F3E1CC', color: '#8A5A24', border: 'none', borderRadius: 999, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
         >
           Añadir
         </button>

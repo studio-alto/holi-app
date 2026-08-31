@@ -56,17 +56,17 @@ export default function MainApp({ state, update, addToast, resetState }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: '100%' }}>
-      <div style={{ position: 'sticky', top: 0, zIndex: 20, backdropFilter: 'blur(8px)', padding: '16px 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#F7F1E3EB' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 20, backdropFilter: 'blur(8px)', padding: '16px 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#EEF1F0EB' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button
             onClick={() => goTo('home')}
             aria-label="Inicio"
-            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 300, fontSize: 24, lineHeight: 1, letterSpacing: 3, textTransform: 'uppercase', color: '#000000' }}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 300, fontSize: 24, lineHeight: 1, letterSpacing: 3, textTransform: 'uppercase', color: '#141414' }}
           >
             HOLÍ
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'linear-gradient(90deg, #91C2F4, #3788D3)', color: '#FFFFFF', padding: '5px 10px', borderRadius: 30, fontSize: 12.5, fontWeight: 100 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#91C2F4', color: '#FFFFFF', padding: '5px 10px', borderRadius: 30, fontSize: 12.5, fontWeight: 100 }}>
               <FlameStreakIcon size={14} color="#FFFFFF" /> {state.streak} días
             </div>
             <button onClick={() => goTo('notificaciones')} aria-label="Notificaciones" style={{ width: 34, height: 34, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)', opacity: 0.8, flexShrink: 0 }}>

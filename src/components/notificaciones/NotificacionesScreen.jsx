@@ -24,8 +24,8 @@ export default function NotificacionesScreen({ state, onNavigate }) {
         const Icon = iconKey ? ICONS[iconKey] : null;
         return (
           <div key={i} style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 18, padding: '14px 16px', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-            <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(90deg, #CBE8FD, #95C5F5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
-              {Icon && <Icon size={17} color="#fff" strokeWidth={1.7} />}
+            <div style={{ width: 34, height: 34, borderRadius: '50%', background: '#C9E4F0', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+              {Icon && <Icon size={17} color="#1B5C7A" strokeWidth={1.7} />}
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
