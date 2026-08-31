@@ -1,10 +1,8 @@
 import { DropIcon, PillIcon, ExerciseIcon, SkinIcon, CircleProgressIcon } from '../icons/Icons';
 
-const LEFT_TABS = [
+const TABS = [
   { id: 'agua', label: 'Agua', Icon: DropIcon, activeColor: 'var(--water)' },
   { id: 'meds', label: 'Medicamentos', Icon: PillIcon, activeColor: 'var(--violet)' },
-];
-const RIGHT_TABS = [
   { id: 'ejercicio', label: 'Ejercicio', Icon: ExerciseIcon, activeColor: '#6fae82' },
   { id: 'piel', label: 'Piel', Icon: SkinIcon, activeColor: '#e2925a' },
 ];
@@ -26,10 +24,11 @@ function TabButton({ id, label, Icon, activeColor, active, onSelect }) {
 // Fixed to the viewport (not the page) so it stays put while content scrolls —
 // same centered 600px column as .phone-card, see FixedOverlayLayer for why
 // `fixed` (not `sticky`) is what actually works here. Floats as a rounded pill
-// with margin on all sides (reference image), rather than a flush full-bleed bar.
-// Icon-only, one tab per main category — same glyphs/colors each screen already
-// uses for its own title, so the nav reads as the same visual language, not a
-// second icon set. The center button covers "ver detalles" (Progreso); Inicio,
+// with margin on all sides, rather than a flush full-bleed bar. Icon-only, one
+// tab per main category — same glyphs/colors each screen already uses for its
+// own title, so the nav reads as the same visual language, not a second icon
+// set. The circle button covers "ver detalles" (Progreso), floated at the
+// right edge of the pill (reference image) instead of centered; Inicio,
 // Notificaciones and Configuración moved to the top header (see MainApp).
 export default function BottomNav({ isActive, onSelect, onDetails }) {
   return (
@@ -51,14 +50,8 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
         flex: 'none',
       }}
     >
-      <div style={{ display: 'flex', flex: 1 }}>
-        {LEFT_TABS.map((t) => (
-          <TabButton key={t.id} {...t} active={isActive(t.id)} onSelect={onSelect} />
-        ))}
-      </div>
-      <div style={{ width: 64, flexShrink: 0 }} />
-      <div style={{ display: 'flex', flex: 1 }}>
-        {RIGHT_TABS.map((t) => (
+      <div style={{ display: 'flex', flex: 1, paddingRight: 56 }}>
+        {TABS.map((t) => (
           <TabButton key={t.id} {...t} active={isActive(t.id)} onSelect={onSelect} />
         ))}
       </div>
@@ -69,8 +62,7 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
         style={{
           position: 'absolute',
           top: -10,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          right: 10,
           width: 52,
           height: 52,
           borderRadius: '50%',
