@@ -23,13 +23,13 @@ function TabButton({ id, label, Icon, activeColor, active, onSelect }) {
 
 // Fixed to the viewport (not the page) so it stays put while content scrolls —
 // same centered 600px column as .phone-card, see FixedOverlayLayer for why
-// `fixed` (not `sticky`) is what actually works here. Floats as a rounded pill
-// with margin on all sides, rather than a flush full-bleed bar. Icon-only, one
-// tab per main category — same glyphs/colors each screen already uses for its
-// own title, so the nav reads as the same visual language, not a second icon
-// set. The circle button covers "ver detalles" (Progreso), floated at the
-// right edge of the pill (reference image) instead of centered; Inicio,
-// Notificaciones and Configuración moved to the top header (see MainApp).
+// `fixed` (not `sticky`) is what actually works here. Two separate floating
+// pieces (reference image): the black pill with the 4 category tabs, and the
+// blue "ver detalles" circle sitting on its own to the right — not merged or
+// overlapping. Icon-only, one tab per main category — same glyphs/colors each
+// screen already uses for its own title, so the nav reads as the same visual
+// language, not a second icon set. Inicio, Notificaciones and Configuración
+// moved to the top header (see MainApp).
 export default function BottomNav({ isActive, onSelect, onDetails }) {
   return (
     <div
@@ -40,17 +40,24 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
         transform: 'translateX(-50%)',
         width: 'calc(100% - 32px)',
         maxWidth: 568,
-        background: '#000000',
-        borderRadius: 999,
-        boxShadow: '0 10px 28px rgba(0,0,0,0.22)',
         display: 'flex',
         alignItems: 'center',
-        padding: '10px 6px',
+        gap: 10,
         zIndex: 20,
         flex: 'none',
       }}
     >
-      <div style={{ display: 'flex', flex: 1, paddingRight: 56 }}>
+      <div
+        style={{
+          flex: 1,
+          background: '#000000',
+          borderRadius: 999,
+          boxShadow: '0 10px 28px rgba(0,0,0,0.22)',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '10px 6px',
+        }}
+      >
         {TABS.map((t) => (
           <TabButton key={t.id} {...t} active={isActive(t.id)} onSelect={onSelect} />
         ))}
@@ -60,19 +67,17 @@ export default function BottomNav({ isActive, onSelect, onDetails }) {
         aria-label="Ver detalles"
         onClick={onDetails}
         style={{
-          position: 'absolute',
-          top: -10,
-          right: 10,
           width: 52,
           height: 52,
           borderRadius: '50%',
           background: '#5ba3e8',
-          border: '4px solid var(--bg)',
+          border: 'none',
           boxShadow: '0 4px 12px rgba(91,163,232,0.5)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
+          flexShrink: 0,
         }}
       >
         <CircleProgressIcon size={26} color="#FFFFFF" accent="#FFFFFF" />
