@@ -71,4 +71,5 @@ button,input,select,textarea{font-family:inherit}
   min-height:100dvh;
   display:flex;
   flex-direction:column;
+  padding-top:env(safe-area-inset-top, 0px);
 }
