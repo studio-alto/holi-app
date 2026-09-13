@@ -6,6 +6,11 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(self.clients.claim());
 });
 
+// A no-op fetch handler — some browsers (notably Chrome on Android) only
+// treat the app as installable once an active service worker intercepts
+// fetches, even without offline caching behind it.
+self.addEventListener('fetch', () => {});
+
 self.addEventListener('push', (event) => {
   let data = {};
   try {
