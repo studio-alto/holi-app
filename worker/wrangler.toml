@@ -9,8 +9,6 @@ compatibility_flags = ["nodejs_compat"]
 [triggers]
 crons = ["* * * * *"]
 
-# Created with: wrangler kv namespace create HOLI_PUSH
-# then paste the returned id below.
 [[kv_namespaces]]
 binding = "HOLI_PUSH"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "60285bd2d2ca4e75ad9c7f259a5ac4a0"
