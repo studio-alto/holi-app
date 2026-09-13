@@ -6,6 +6,7 @@ import OnboardingFlow from './components/onboarding/OnboardingFlow';
 import MainApp from './components/home/MainApp';
 import ToastStack from './components/shared/ToastStack';
 import SplashScreen from './components/shared/SplashScreen';
+import DebugOverlay from './components/shared/DebugOverlay';
 
 export default function App() {
   const { state, update, toggleInArray, resetState } = useAppState();
@@ -24,6 +25,7 @@ export default function App() {
         <ToastStack toasts={toasts} />
         {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
       </div>
+      <DebugOverlay />
     </div>
   );
 }
