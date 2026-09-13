@@ -47,6 +47,7 @@ button,input,select,textarea{font-family:inherit}
 @keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-4px);opacity:1}}
 @keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes barShimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
+@keyframes letterPop{0%{opacity:0;transform:translateY(16px) scale(0.4) rotate(-8deg)}55%{opacity:1;transform:translateY(-5px) scale(1.12) rotate(3deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(0deg)}}
 
 .fade-in-up{animation:fadeInUp 0.25s ease}
 .celebrate{animation:celebrate 0.7s ease}

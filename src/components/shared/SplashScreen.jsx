@@ -1,28 +1,49 @@
 import { useEffect, useState } from 'react';
 
-const VISIBLE_MS = 1400;
+const VISIBLE_MS = 1700;
 const FADE_MS = 300;
+const FONT_TIMEOUT_MS = 500;
+const LETTERS = ['H', 'o', 'l', 'i', '!'];
 
 // Shown once per app open (not just once ever) — a brief branded moment
 // before landing on Home/onboarding, like a native app's launch screen.
+// The wordmark is real text (Yellowtail, a script webfont), not an image,
+// so each letter can animate in on its own.
 export default function SplashScreen({ onDone }) {
+  const [fontReady, setFontReady] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
+  // Wait for the Yellowtail webfont so the letters don't flash in a fallback
+  // serif before swapping — but never block longer than FONT_TIMEOUT_MS
+  // (e.g. offline), since the splash should never hang.
   useEffect(() => {
+    let cancelled = false;
+    const ready = document.fonts?.load ? document.fonts.load('64px Yellowtail').then(() => document.fonts.ready) : Promise.resolve();
+    const timeout = new Promise((resolve) => setTimeout(resolve, FONT_TIMEOUT_MS));
+    Promise.race([ready, timeout]).then(() => {
+      if (!cancelled) setFontReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!fontReady) return undefined;
     const t1 = setTimeout(() => setLeaving(true), VISIBLE_MS);
     const t2 = setTimeout(onDone, VISIBLE_MS + FADE_MS);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, [onDone]);
+  }, [fontReady, onDone]);
 
   return (
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        background: 'var(--grad-welcome)',
+        background: '#91C2F4',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,13 +53,22 @@ export default function SplashScreen({ onDone }) {
         pointerEvents: 'none',
       }}
     >
-      <div className="celebrate" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <svg viewBox="0 0 120 150" width={108} height={108} fill="none" style={{ filter: 'drop-shadow(0 6px 14px rgba(20,60,90,0.18))' }}>
-          <path d="M20 8c8 0 14 6 14 14v30c9-9 20-13 30-13 16 0 26 11 26 27v46c0 8-6 14-14 14s-14-6-14-14V70c0-6-4-10-10-10s-12 5-18 13v40c0 8-6 14-14 14s-14-6-14-14V22c0-8 6-14 14-14z" fill="#ffffff" />
-          <circle cx="98" cy="30" r="12" fill="#ffffff" />
-        </svg>
-        <div style={{ fontWeight: 500, fontSize: 19, color: '#ffffff', letterSpacing: 9, marginTop: 16 }}>HOLI</div>
-      </div>
+      {fontReady && (
+        <div style={{ fontFamily: "'Yellowtail', cursive", fontSize: 64, color: '#ffffff', lineHeight: 1 }}>
+          {LETTERS.map((letter, i) => (
+            <span
+              key={i}
+              style={{
+                display: 'inline-block',
+                animation: 'letterPop 0.55s cubic-bezier(0.34,1.56,0.64,1) both',
+                animationDelay: `${i * 0.09}s`,
+              }}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
