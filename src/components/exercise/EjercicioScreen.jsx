@@ -1,5 +1,6 @@
 import { BackIcon, ExerciseIcon, CheckIcon } from '../icons/Icons';
 import RoutineIcon from './RoutineIcon';
+import RingProgress from '../shared/RingProgress';
 import { computeExerciseDerived } from '../../utils/exercise';
 import { useExerciseActions } from '../../state/useExerciseActions';
 import { useAlarmActions } from '../../state/useAlarmActions';
@@ -26,13 +27,12 @@ export default function EjercicioScreen({ state, update, addToast, onNavigate })
       </div>
 
       <div style={{ background: '#D8E8C4', borderRadius: 20, padding: 18, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <div style={{ position: 'relative', width: 76, height: 76, flex: 'none' }}>
-          <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: `conic-gradient(#456022 ${exWeekPct}%, rgba(255,255,255,0.6) 0)` }} />
+        <RingProgress size={76} strokeWidth={7} pct={exWeekPct} color="#456022" trackColor="rgba(255,255,255,0.6)">
           <div style={{ position: 'absolute', inset: 7, borderRadius: '50%', background: '#EEF6E2', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#141414', lineHeight: 1 }}>{exWeekDaysCount}</div>
             <div style={{ fontSize: 9.5, color: '#141414', opacity: 0.65 }}>Días</div>
           </div>
-        </div>
+        </RingProgress>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#141414' }}>¡Has mantenido el ritmo!</div>
           <div style={{ fontSize: 12, color: '#141414', opacity: 0.7, marginTop: 4, lineHeight: 1.4 }}>Entrenaste {exWeekDaysCount} de 7 días esta semana.</div>

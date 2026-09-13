@@ -1,4 +1,5 @@
 import { BackIcon, BarChartIcon, DropIcon, PillIcon, SkinIcon, ExerciseIcon, FlameStreakIcon, CrownIcon, StarIcon } from '../icons/Icons';
+import RingProgress from '../shared/RingProgress';
 import { computeProgressDerived } from '../../utils/progress';
 
 const STAT_ICONS = { agua: DropIcon, meds: PillIcon, piel: SkinIcon, ejercicio: ExerciseIcon };
@@ -51,12 +52,13 @@ export default function ProgresoScreen({ state, onNavigate }) {
               <div style={{ fontSize: 13, fontWeight: 700 }}>Racha</div>
               <FlameStreakIcon size={18} color="#1B5C7A" strokeWidth={1.8} />
             </div>
-            <div style={{ position: 'relative', width: 104, height: 104, alignSelf: 'center' }}>
-              <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: `conic-gradient(#1B5C7A ${streakRingPct}%, rgba(255,255,255,0.7) 0)` }} />
-              <div style={{ position: 'absolute', inset: 10, borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.65)' }}>
-                <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1 }}>{state.streak}</div>
-                <div style={{ fontSize: 10, opacity: 0.85 }}>días</div>
-              </div>
+            <div style={{ alignSelf: 'center' }}>
+              <RingProgress size={104} strokeWidth={10} pct={streakRingPct} color="#1B5C7A" trackColor="rgba(255,255,255,0.7)">
+                <div style={{ position: 'absolute', inset: 10, borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.65)' }}>
+                  <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1 }}>{state.streak}</div>
+                  <div style={{ fontSize: 10, opacity: 0.85 }}>días</div>
+                </div>
+              </RingProgress>
             </div>
             <div style={{ textAlign: 'center', fontSize: 12, opacity: 0.9 }}>de racha activa</div>
           </div>
