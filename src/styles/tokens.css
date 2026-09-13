@@ -57,8 +57,14 @@ button,input,select,textarea{font-family:inherit}
 
 .app-shell{
   position:fixed;
-  inset:0;
+  top:0;
+  left:0;
   width:100%;
+  /* --app-height is measured in JS (src/utils/viewportHeight.js) — iOS
+     Safari standalone PWAs don't always size 100dvh/inset:0 to the true
+     visible screen, leaving a gap at the bottom. 100dvh is only the
+     fallback before that JS runs. */
+  height:var(--app-height, 100dvh);
   background:var(--bg);
   display:flex;
   justify-content:center;
