@@ -14,11 +14,9 @@ import SettingsScreen from '../settings/SettingsScreen';
 import DiarioScreen from '../diary/DiarioScreen';
 import DevocionalScreen from '../devocional/DevocionalScreen';
 import NotificacionesScreen from '../notificaciones/NotificacionesScreen';
-import AlarmToast from '../shared/AlarmToast';
 import { buildWeekDays, todayLabel } from '../../utils/date';
 import { getWeekStripCategory } from '../../utils/weekStripCategory';
 import { useMedsActions } from '../../state/useMedsActions';
-import { useAlarmActions } from '../../state/useAlarmActions';
 import { syncSubscription } from '../../utils/push';
 
 const NO_WEEK_STRIP_SCREENS = new Set(['home', 'diario', 'devocional', 'progreso', 'notificaciones', 'settings']);
@@ -29,7 +27,6 @@ export default function MainApp({ state, update, addToast, resetState }) {
   const weekDays = useMemo(() => buildWeekDays(today, weekCategory), [today, weekCategory]);
   const label = useMemo(() => todayLabel(today), [today]);
   const meds = useMedsActions(state, update, addToast);
-  const alarm = useAlarmActions(state, update, addToast);
 
   // Keep the Worker's copy of "when to remind this device" in sync whenever
   // the person edits a medication or a reminder time/toggle — debounced so
@@ -125,8 +122,6 @@ export default function MainApp({ state, update, addToast, resetState }) {
           onSave={meds.saveMed}
         />
       )}
-
-      <AlarmToast alarm={state.alarmToast} onTaken={alarm.alarmTaken} onSnooze={alarm.alarmSnooze} onCancel={alarm.alarmCancel} />
     </div>
   );
 }

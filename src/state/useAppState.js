@@ -59,7 +59,6 @@ export const defaultState = {
   medModalOpen: false,
   editingMedId: null,
   medForm: { name: '', type: 'Vitamina', dose: '', freq: 'Diario', time: '08:00', notes: '', color: '#d4847a' },
-  alarmToast: null,
 
   routines: [
     {

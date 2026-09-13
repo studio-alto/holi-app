@@ -1,6 +1,5 @@
-import { BackIcon, PillIcon, BellIcon } from '../icons/Icons';
+import { BackIcon, PillIcon } from '../icons/Icons';
 import { useMedsActions } from '../../state/useMedsActions';
-import { useAlarmActions } from '../../state/useAlarmActions';
 
 function formatTime12h(time) {
   const [h, m] = time.split(':').map(Number);
@@ -28,7 +27,6 @@ function getNextMed(meds) {
 
 export default function MedsScreen({ state, update, addToast, onNavigate }) {
   const { editMed, openAddMed, toggleMedTaken, removeMed, toggleMedEdit } = useMedsActions(state, update, addToast);
-  const { triggerMedAlarm } = useAlarmActions(state, update, addToast);
   const nextMed = getNextMed(state.meds);
 
   return (
@@ -122,22 +120,13 @@ export default function MedsScreen({ state, update, addToast, onNavigate }) {
               ✕
             </button>
           ) : (
-            <>
-              <button
-                aria-label={`Simular recordatorio de ${m.name}`}
-                onClick={() => triggerMedAlarm(m.id)}
-                style={{ width: 32, height: 32, flex: 'none', borderRadius: '50%', border: 'none', background: 'var(--surface2)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-              >
-                <BellIcon size={15} color="var(--violet-text)" strokeWidth={1.8} />
-              </button>
-              <button
-                aria-label="Marcar tomado"
-                role="checkbox"
-                aria-checked={m.taken}
-                onClick={() => toggleMedTaken(m.id)}
-                style={{ width: 22, height: 21, flex: 'none', borderRadius: '50%', border: `1.5px solid ${m.taken ? 'var(--violet)' : 'var(--border)'}`, background: m.taken ? 'var(--violet)' : 'transparent', cursor: 'pointer', opacity: 0.56 }}
-              />
-            </>
+            <button
+              aria-label="Marcar tomado"
+              role="checkbox"
+              aria-checked={m.taken}
+              onClick={() => toggleMedTaken(m.id)}
+              style={{ width: 22, height: 21, flex: 'none', borderRadius: '50%', border: `1.5px solid ${m.taken ? 'var(--violet)' : 'var(--border)'}`, background: m.taken ? 'var(--violet)' : 'transparent', cursor: 'pointer', opacity: 0.56 }}
+            />
           )}
         </div>
       ))}

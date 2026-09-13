@@ -1,12 +1,10 @@
 import { DropIcon, BackIcon } from '../icons/Icons';
 import { waterMood, buildWaterHistory } from '../../utils/water';
-import { useAlarmActions } from '../../state/useAlarmActions';
 
 const QUICK_AMOUNTS = [250, 500, 750];
 const GLASS_ML = 250;
 
 export default function AguaScreen({ state, update, addToast, onNavigate }) {
-  const { triggerWaterAlarm } = useAlarmActions(state, update, addToast);
   const waterTodayMl = state.waterTodayMl;
   const waterGoalMl = state.waterGoalMl;
   const waterPct = Math.min(100, Math.round((waterTodayMl / waterGoalMl) * 100));
@@ -139,13 +137,6 @@ export default function AguaScreen({ state, update, addToast, onNavigate }) {
           </div>
         ))}
       </div>
-
-      <button
-        onClick={triggerWaterAlarm}
-        style={{ padding: 13, background: 'var(--surface2)', border: '1px dashed var(--border)', borderRadius: 999, fontSize: 13, color: 'var(--text-2)', cursor: 'pointer' }}
-      >
-        Simular recordatorio de agua
-      </button>
     </div>
   );
 }

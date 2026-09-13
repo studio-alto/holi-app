@@ -1,10 +1,8 @@
 import { BackIcon, SkinIcon, SunIcon, MoonIcon } from '../icons/Icons';
 import { computeSkinDerived } from '../../utils/skincare';
-import { useAlarmActions } from '../../state/useAlarmActions';
 
-export default function PielScreen({ state, update, addToast, onNavigate }) {
+export default function PielScreen({ state, update, onNavigate }) {
   const { period, periodLabel, skinDone, skinTotal, skinPct, skinSteps } = computeSkinDerived(state);
-  const { triggerSunscreenAlarm } = useAlarmActions(state, update, addToast);
 
   const setPeriod = (p) => update((prev) => ({ skincare: { ...prev.skincare, period: p } }));
 
@@ -128,13 +126,6 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
           Añadir
         </button>
       </div>
-
-      <button
-        onClick={triggerSunscreenAlarm}
-        style={{ padding: 13, background: 'var(--surface2)', border: '1px dashed var(--border)', borderRadius: 999, fontSize: 13, color: 'var(--text-2)', cursor: 'pointer' }}
-      >
-        Simular recordatorio de bloqueador
-      </button>
     </div>
   );
 }

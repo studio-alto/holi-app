@@ -3,12 +3,10 @@ import RoutineIcon from './RoutineIcon';
 import RingProgress from '../shared/RingProgress';
 import { computeExerciseDerived } from '../../utils/exercise';
 import { useExerciseActions } from '../../state/useExerciseActions';
-import { useAlarmActions } from '../../state/useAlarmActions';
 
 export default function EjercicioScreen({ state, update, addToast, onNavigate }) {
   const { routineCards, activeRoutineBlocks, exWeekDaysCount, exWeekPct, exLongestStreak } = computeExerciseDerived(state);
   const { toggleRoutineSelection, incrementExercise, completeRoutine } = useExerciseActions(update, addToast);
-  const { triggerExerciseAlarm } = useAlarmActions(state, update, addToast);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -129,13 +127,6 @@ export default function EjercicioScreen({ state, update, addToast, onNavigate })
         style={{ padding: 15, background: '#141414', color: '#fff', border: 'none', borderRadius: 999, fontWeight: 500, cursor: 'pointer' }}
       >
         Completar rutina(s)
-      </button>
-
-      <button
-        onClick={triggerExerciseAlarm}
-        style={{ padding: 13, background: 'var(--surface2)', border: '1px dashed var(--border)', borderRadius: 999, fontSize: 13, color: 'var(--text-2)', cursor: 'pointer' }}
-      >
-        Simular recordatorio de ejercicio
       </button>
     </div>
   );
