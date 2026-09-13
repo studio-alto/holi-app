@@ -76,7 +76,7 @@ export default function MainApp({ state, update, addToast, resetState }) {
         </div>
       </div>
 
-      <div className="fade-in-up" style={{ flex: 1, overflowY: 'auto', padding: '16px 20px calc(110px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
+      <div className="fade-in-up" style={{ flex: 1, overflowY: 'auto', padding: '16px 20px calc(32px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
         {showQuote && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
