@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import './styles/tokens.css';
 import { useAppState } from './state/useAppState';
 import { useToasts } from './state/useToasts';
 import OnboardingFlow from './components/onboarding/OnboardingFlow';
 import MainApp from './components/home/MainApp';
 import ToastStack from './components/shared/ToastStack';
+import SplashScreen from './components/shared/SplashScreen';
 
 export default function App() {
   const { state, update, toggleInArray, resetState } = useAppState();
   const { toasts, addToast } = useToasts();
+  const [showSplash, setShowSplash] = useState(true);
   const isOnboarding = !state.onboardingDone;
 
   return (
@@ -19,6 +22,7 @@ export default function App() {
           <MainApp state={state} update={update} addToast={addToast} resetState={resetState} />
         )}
         <ToastStack toasts={toasts} />
+        {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
       </div>
     </div>
   );

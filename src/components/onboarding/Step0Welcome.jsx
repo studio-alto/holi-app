@@ -1,7 +1,5 @@
-const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-export default function Step0Welcome({ state, update, onNext, onSkip }) {
-  const invalid = !state.obName.trim() || !isValidEmail(state.obEmail);
+export default function Step0Welcome({ state, update, onSkip }) {
+  const invalid = !state.obName.trim();
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'var(--grad-welcome)', padding: '48px 30px 34px' }}>
@@ -44,23 +42,11 @@ export default function Step0Welcome({ state, update, onNext, onSkip }) {
           />
         </div>
 
-        <div style={{ textAlign: 'left' }}>
-          <label style={{ fontSize: 11.5, fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: 0.3 }}>TU CORREO</label>
-          <input
-            aria-label="Tu correo"
-            type="email"
-            placeholder="tu@correo.com"
-            value={state.obEmail}
-            onChange={(e) => update({ obEmail: e.target.value })}
-            style={{ width: '100%', marginTop: 7, padding: '14px 16px', borderRadius: 305, border: 'none', fontSize: 16, background: 'rgba(255,255,255,0.92)', color: '#1a1a1a' }}
-          />
-        </div>
-
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 4 }}>
           <button
-            aria-label="Siguiente"
+            aria-label="Comenzar"
             disabled={invalid}
-            onClick={onNext}
+            onClick={onSkip}
             style={{
               width: '100%',
               padding: 15,
@@ -75,7 +61,7 @@ export default function Step0Welcome({ state, update, onNext, onSkip }) {
               boxShadow: '0 6px 16px rgba(0,0,0,0.18)',
             }}
           >
-            Siguiente
+            Comenzar
           </button>
           <button
             aria-label="Saltar"
