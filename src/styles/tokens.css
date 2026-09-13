@@ -1,6 +1,9 @@
 *{box-sizing:border-box}
 html,body,#root{height:100%}
-html,body{overflow:hidden;max-width:100%}
+/* iOS Safari (especially installed/standalone PWAs) can still rubber-band
+   the page even with overflow:hidden alone, so html/body are pinned with
+   position:fixed too — the stronger, more reliable version of this fix. */
+html,body{overflow:hidden;max-width:100%;position:fixed;inset:0;width:100%}
 body{margin:0}
 ::-webkit-scrollbar{display:none}
 
