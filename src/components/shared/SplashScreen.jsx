@@ -7,18 +7,18 @@ const LETTERS = ['H', 'o', 'l', 'i', '!'];
 
 // Shown once per app open (not just once ever) — a brief branded moment
 // before landing on Home/onboarding, like a native app's launch screen.
-// The wordmark is real text (Yellowtail, a script webfont), not an image,
+// The wordmark is real text (Leckerli One, a script webfont), not an image,
 // so each letter can animate in on its own.
 export default function SplashScreen({ onDone }) {
   const [fontReady, setFontReady] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
-  // Wait for the Yellowtail webfont so the letters don't flash in a fallback
+  // Wait for the Leckerli One webfont so the letters don't flash in a fallback
   // serif before swapping — but never block longer than FONT_TIMEOUT_MS
   // (e.g. offline), since the splash should never hang.
   useEffect(() => {
     let cancelled = false;
-    const ready = document.fonts?.load ? document.fonts.load('64px Yellowtail').then(() => document.fonts.ready) : Promise.resolve();
+    const ready = document.fonts?.load ? document.fonts.load('64px "Leckerli One"').then(() => document.fonts.ready) : Promise.resolve();
     const timeout = new Promise((resolve) => setTimeout(resolve, FONT_TIMEOUT_MS));
     Promise.race([ready, timeout]).then(() => {
       if (!cancelled) setFontReady(true);
@@ -54,7 +54,7 @@ export default function SplashScreen({ onDone }) {
       }}
     >
       {fontReady && (
-        <div style={{ fontFamily: "'Yellowtail', cursive", fontSize: 64, color: '#ffffff', lineHeight: 1 }}>
+        <div style={{ fontFamily: "'Leckerli One', cursive", fontSize: 64, color: '#ffffff', lineHeight: 1 }}>
           {LETTERS.map((letter, i) => (
             <span
               key={i}
