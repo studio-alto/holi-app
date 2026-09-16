@@ -78,11 +78,14 @@ button,input,select,textarea{font-family:inherit}
   background:var(--bg);
   overflow:hidden;
   position:relative;
-  /* Makes .phone-card the containing block for descendant position:fixed
-     elements (BottomNav, FixedOverlayLayer) so on a wide/desktop viewport
-     they anchor to this centered 600px column instead of the full browser
-     window. Purely a containing-block trick, no visual effect. */
-  transform:translateZ(0);
+  /* No transform here on purpose. A transform on an ancestor makes it the
+     containing block for descendant position:fixed elements (BottomNav,
+     FixedOverlayLayer) — meaning they'd anchor to THIS box's own height
+     (still just an approximation of the real screen) instead of the true
+     device viewport, which position:fixed always tracks correctly by
+     itself with zero measurement. Both of those descendants already
+     center themselves via left:50%+translateX(-50%) / flex justify-center,
+     so nothing here needs to constrain their width either. */
   display:flex;
   flex-direction:column;
   padding-top:env(safe-area-inset-top, 0px);
