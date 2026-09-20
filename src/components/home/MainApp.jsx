@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { FlameStreakIcon, BellIcon, GearIcon } from '../icons/Icons';
 import WeekStrip from './WeekStrip';
 import BottomNav from './BottomNav';
@@ -52,14 +52,27 @@ export default function MainApp({ state, update, addToast, resetState }) {
     window.scrollTo(0, 0);
   }, [state.screen]);
 
+  // The header is position:fixed (sticky is unreliable in iOS Safari), so its
+  // measured height is published for the spacer below to reserve room for it.
+  const headerRef = useRef(null);
+  useLayoutEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const setHeight = () => document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`);
+    setHeight();
+    const ro = new ResizeObserver(setHeight);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const goTo = (screen) => update({ screen });
   const isHome = state.screen === 'home';
   const showQuote = !NO_WEEK_STRIP_SCREENS.has(state.screen);
   const isTabActive = (id) => state.screen === id;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-      <div style={{ position: 'sticky', top: 0, zIndex: 20, backdropFilter: 'blur(8px)', padding: '16px 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#EEF1F0EB' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, marginTop: 'calc(-1 * env(safe-area-inset-top, 0px))' }}>
+      <div ref={headerRef} style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 600, zIndex: 20, backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', padding: 'calc(16px + env(safe-area-inset-top, 0px)) 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#EEF1F0EB' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button
             onClick={() => goTo('home')}
@@ -81,6 +94,8 @@ export default function MainApp({ state, update, addToast, resetState }) {
           </div>
         </div>
       </div>
+
+      <div aria-hidden style={{ height: 'var(--header-h, 64px)', flexShrink: 0 }} />
 
       <div className="fade-in-up" style={{ flex: 1, padding: '16px 20px calc(104px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
         {showQuote && (
