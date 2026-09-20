@@ -1,26 +1,12 @@
-// iOS Safari (especially installed/standalone PWAs) doesn't reliably size
-// position:fixed/100dvh boxes to the true visible screen — there can be a
-// gap at the bottom the CSS-only approach never closes. This measures the
-// actual visible height with JS and exposes it as --app-height, which
-// tokens.css uses instead of vh/dvh for the outermost app box.
-//
-// On-device diagnosis (DebugOverlay) showed that in standalone-PWA mode,
-// window.innerHeight/visualViewport.height under-report the true screen
-// height by ~50px (762 measured vs 812 actual) — a known WKWebView quirk
-// where the content view initializes shorter than the real screen. Since
-// Safari chrome (address bar, tab bar) never exists in standalone mode,
-// there's nothing screen.height could be wrongly including there, so it's
-// safe to prefer it over the under-reporting APIs specifically when
-// standalone. In a regular browser tab (not standalone) screen.height is
-// NOT used, since there it legitimately includes space Safari's own UI
-// occupies that our content shouldn't try to fill.
+// Mirrors the live visible viewport into --app-height for the outermost app
+// box (tokens.css). Deliberately NO screen.height override: that was a fix
+// for the black-translucent status-bar mode (index.html no longer opts into
+// it), where iOS sized the standalone web view ~50px shorter than the
+// screen. Without it — same setup as the PAYDAY PWA — the web view fills the
+// screen below the status bar and the measured height is already exact.
 export function setupAppHeightVar() {
-  const isStandalone = () => window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
-
   const set = () => {
-    const measured = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-    const screenHeight = window.screen?.height || 0;
-    const h = isStandalone() ? Math.max(measured, screenHeight) : measured;
+    const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
     document.documentElement.style.setProperty('--app-height', `${h}px`);
   };
   set();
