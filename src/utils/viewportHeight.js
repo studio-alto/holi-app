@@ -1,26 +1,26 @@
-// iOS Safari standalone PWAs don't reliably report the true visible screen
-// through viewport APIs — on-device testing this session found
-// window.innerHeight/visualViewport.height under-reporting by ~50px, and
-// CSS-only attempts (100dvh, position:fixed+inset:0 on .app-shell/html/body)
-// left the same gap. A hardcoded correction (forcing screen.height whenever
-// standalone) chased that one data point but isn't safe in general — screen
-// dimensions are a static per-device constant, not a live measurement, so it
-// can just as easily overshoot the real visible area on another device.
+// iOS Safari (especially installed/standalone PWAs) doesn't reliably size
+// position:fixed/100dvh boxes to the true visible screen — there can be a
+// gap at the bottom the CSS-only approach never closes. This measures the
+// actual visible height with JS and exposes it as --app-height, which
+// tokens.css uses instead of vh/dvh for the outermost app box.
 //
-// html/body are pinned with position:fixed;inset:0 in tokens.css, which the
-// CSS spec *guarantees* fills the real browser viewport exactly (that's the
-// literal definition of a fixed element's containing block) — no vh/dvh
-// ambiguity involved. So instead of trusting a reporting API, this reads
-// back the ACTUAL rendered height of that pinned box and uses it as
-// --app-height. .app-shell then matches its own ancestor by construction,
-// so there's no gap between our own elements regardless of which viewport
-// API is inaccurate on a given device — no device-specific numbers needed.
+// On-device diagnosis (DebugOverlay) showed that in standalone-PWA mode,
+// window.innerHeight/visualViewport.height under-report the true screen
+// height by ~50px (762 measured vs 812 actual) — a known WKWebView quirk
+// where the content view initializes shorter than the real screen. Since
+// Safari chrome (address bar, tab bar) never exists in standalone mode,
+// there's nothing screen.height could be wrongly including there, so it's
+// safe to prefer it over the under-reporting APIs specifically when
+// standalone. In a regular browser tab (not standalone) screen.height is
+// NOT used, since there it legitimately includes space Safari's own UI
+// occupies that our content shouldn't try to fill.
 export function setupAppHeightVar() {
+  const isStandalone = () => window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+
   const set = () => {
-    const h =
-      document.documentElement.getBoundingClientRect().height ||
-      window.visualViewport?.height ||
-      window.innerHeight;
+    const measured = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const screenHeight = window.screen?.height || 0;
+    const h = isStandalone() ? Math.max(measured, screenHeight) : measured;
     document.documentElement.style.setProperty('--app-height', `${h}px`);
   };
   set();

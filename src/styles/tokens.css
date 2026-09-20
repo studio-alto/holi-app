@@ -60,10 +60,10 @@ button,input,select,textarea{font-family:inherit}
   top:0;
   left:0;
   width:100%;
-  /* --app-height is measured in JS (src/utils/viewportHeight.js) from the
-     ACTUAL rendered size of the pinned html box (position:fixed;inset:0
-     below), not from a viewport-reporting API — see that file for why.
-     100dvh is only the fallback for the instant before that JS runs. */
+  /* --app-height is measured in JS (src/utils/viewportHeight.js) — iOS
+     Safari standalone PWAs don't always size 100dvh/inset:0 to the true
+     visible screen, leaving a gap at the bottom. 100dvh is only the
+     fallback before that JS runs. */
   height:var(--app-height, 100dvh);
   background:var(--bg);
   display:flex;
@@ -79,9 +79,10 @@ button,input,select,textarea{font-family:inherit}
   overflow:hidden;
   position:relative;
   /* Makes .phone-card the containing block for descendant position:fixed
-     elements (BottomNav, FixedOverlayLayer) so on a wide/desktop viewport
-     they anchor to this centered 600px column instead of the full browser
-     window. Purely a containing-block trick, no visual effect. */
+     elements (BottomNav, FixedOverlayLayer) so they anchor to its own
+     (correctly --app-height-sized) box instead of the raw browser
+     viewport, which under-reports height in standalone iOS PWAs — see
+     viewportHeight.js. Purely a containing-block trick, no visual effect. */
   transform:translateZ(0);
   display:flex;
   flex-direction:column;
