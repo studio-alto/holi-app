@@ -1,14 +1,14 @@
 *{box-sizing:border-box}
-#root{height:100%}
-/* iOS Safari (especially installed/standalone PWAs) can still rubber-band
-   the page even with overflow:hidden alone, so html/body are pinned with
-   position:fixed too — the stronger, more reliable version of this fix.
-   Their height is the same JS-corrected --app-height as .app-shell, NOT
-   inset:0: in standalone iOS the raw viewport is ~50px shorter than the
-   screen, so an inset:0 body is a clip box that cuts the (taller, correct)
-   app — and the bottom nav with it — off at that short line. */
-html,body{overflow:hidden;max-width:100%;position:fixed;top:0;left:0;width:100%;height:var(--app-height,100%)}
-body{margin:0}
+/* Same structure as the PAYDAY PWA, which fills the iPhone screen: the page
+   flows and scrolls natively (no fixed/overflow-hidden html/body frame, no
+   JS-measured height), and only the nav/overlays are position:fixed against
+   the real viewport. Any fixed-height "frame" made iOS standalone clip the
+   app ~50px short of the screen. */
+/* overflow-x only on html: on body too it becomes its own scroll container,
+   which breaks position:sticky on the header. */
+html{overflow-x:hidden}
+html,body{margin:0;padding:0;background:var(--bg);width:100%;max-width:100%}
+#root{min-height:100vh;min-height:100dvh;width:100%}
 ::-webkit-scrollbar{display:none}
 
 :root{
@@ -60,34 +60,21 @@ button,input,select,textarea{font-family:inherit}
 .pop-scale{animation:popScale 1.6s ease infinite}
 
 .app-shell{
-  position:fixed;
-  top:0;
-  left:0;
   width:100%;
-  /* --app-height is measured in JS (src/utils/viewportHeight.js) — iOS
-     Safari standalone PWAs don't always size 100dvh/inset:0 to the true
-     visible screen, leaving a gap at the bottom. 100dvh is only the
-     fallback before that JS runs. */
-  height:var(--app-height, 100dvh);
+  min-height:100vh;
+  min-height:100dvh;
   background:var(--bg);
   display:flex;
   justify-content:center;
-  align-items:flex-start;
 }
 
 .phone-card{
   width:100%;
   max-width:600px;
-  height:100%;
+  min-height:100vh;
+  min-height:100dvh;
   background:var(--bg);
-  overflow:hidden;
   position:relative;
-  /* Makes .phone-card the containing block for descendant position:fixed
-     elements (BottomNav, FixedOverlayLayer) so they anchor to its own
-     (correctly --app-height-sized) box instead of the raw browser
-     viewport, which under-reports height in standalone iOS PWAs — see
-     viewportHeight.js. Purely a containing-block trick, no visual effect. */
-  transform:translateZ(0);
   display:flex;
   flex-direction:column;
   padding-top:env(safe-area-inset-top, 0px);

@@ -23,7 +23,7 @@ export default function SplashScreen({ onDone }) {
   return (
     <div
       style={{
-        position: 'absolute',
+        position: 'fixed',
         inset: 0,
         background: '#89C6FD',
         display: 'flex',

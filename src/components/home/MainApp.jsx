@@ -46,13 +46,19 @@ export default function MainApp({ state, update, addToast, resetState }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scheduleFingerprint, state.notif.master]);
 
+  // The page itself scrolls now (no inner scroll box), so a new screen has to
+  // start back at the top instead of inheriting the previous one's offset.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [state.screen]);
+
   const goTo = (screen) => update({ screen });
   const isHome = state.screen === 'home';
   const showQuote = !NO_WEEK_STRIP_SCREENS.has(state.screen);
   const isTabActive = (id) => state.screen === id;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
       <div style={{ position: 'sticky', top: 0, zIndex: 20, backdropFilter: 'blur(8px)', padding: '16px 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#EEF1F0EB' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button
@@ -76,7 +82,7 @@ export default function MainApp({ state, update, addToast, resetState }) {
         </div>
       </div>
 
-      <div className="fade-in-up" style={{ flex: 1, overflowY: 'auto', padding: '16px 20px calc(32px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
+      <div className="fade-in-up" style={{ flex: 1, padding: '16px 20px calc(104px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
         {showQuote && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
