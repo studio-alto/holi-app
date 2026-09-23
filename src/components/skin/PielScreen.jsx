@@ -47,17 +47,20 @@ export default function PielScreen({ state, update, addToast, onNavigate }) {
 
   const startTimer = () => {
     if (timerRunning) return;
+    let remaining = timerRemaining <= 0 ? timerDuration : timerRemaining;
+    setTimerRemaining(remaining);
     setTimerRunning(true);
+    // Counted outside the state updater: calling addToast (another
+    // component's setState) from inside one is a React "setState while
+    // rendering" error and can fire the toast twice.
     intervalRef.current = setInterval(() => {
-      setTimerRemaining((prev) => {
-        if (prev <= 1) {
-          clearTimerInterval();
-          setTimerRunning(false);
-          addToast?.('✓ Tiempo de espera completado ⏱️');
-          return 0;
-        }
-        return prev - 1;
-      });
+      remaining -= 1;
+      setTimerRemaining(Math.max(0, remaining));
+      if (remaining <= 0) {
+        clearTimerInterval();
+        setTimerRunning(false);
+        addToast?.('✓ Tiempo de espera completado ⏱️');
+      }
     }, 1000);
   };
 

@@ -28,12 +28,18 @@ export async function registerServiceWorker() {
 // use one daily reminder time each, gated by their "Recordatorios por
 // categoría" toggle in Configuración.
 export function buildReminderSchedule(state) {
+  // Master switch off = an empty schedule, so the Worker stops sending
+  // anything to this device (it keeps the last schedule it was given).
+  if (!state.notif.master) return [];
+
   const schedule = [];
 
-  state.meds.forEach((m) => {
-    if (!m.time) return;
-    schedule.push({ type: 'med', time: m.time, label: m.name, dose: m.dose, notes: m.notes });
-  });
+  if (state.notif.cats.meds) {
+    state.meds.forEach((m) => {
+      if (!m.time) return;
+      schedule.push({ type: 'med', time: m.time, label: m.name, dose: m.dose, notes: m.notes });
+    });
+  }
 
   if (state.notif.cats.sun) {
     schedule.push({ type: 'sun', time: state.skincare.spfReminderTime || '08:00', label: 'Bloqueador solar' });

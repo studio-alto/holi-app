@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { FlameStreakIcon, BellIcon, GearIcon } from '../icons/Icons';
 import WeekStrip from './WeekStrip';
 import BottomNav from './BottomNav';
@@ -40,7 +40,7 @@ export default function MainApp({ state, update, addToast, resetState }) {
   });
   useEffect(() => {
     const t = setTimeout(() => {
-      if (state.notif.master) syncSubscription(state);
+      syncSubscription(state);
     }, 1500);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,19 +52,6 @@ export default function MainApp({ state, update, addToast, resetState }) {
     window.scrollTo(0, 0);
   }, [state.screen]);
 
-  // The header is position:fixed (sticky is unreliable in iOS Safari), so its
-  // measured height is published for the spacer below to reserve room for it.
-  const headerRef = useRef(null);
-  useLayoutEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const setHeight = () => document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`);
-    setHeight();
-    const ro = new ResizeObserver(setHeight);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
   const goTo = (screen) => update({ screen });
   const isHome = state.screen === 'home';
   const showQuote = !NO_WEEK_STRIP_SCREENS.has(state.screen);
@@ -72,14 +59,14 @@ export default function MainApp({ state, update, addToast, resetState }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, marginTop: 'calc(-1 * env(safe-area-inset-top, 0px))' }}>
-      <div ref={headerRef} style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 600, zIndex: 20, backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', padding: 'calc(16px + env(safe-area-inset-top, 0px)) 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#EEF1F0EB' }}>
+      <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 600, zIndex: 20, backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', padding: 'calc(16px + env(safe-area-inset-top, 0px)) 20px 12px', borderBottom: '0.5px solid var(--border)', backgroundColor: '#EEF1F0EB' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button
             onClick={() => goTo('home')}
             aria-label="Inicio"
-            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 300, fontSize: 24, lineHeight: 1, letterSpacing: 3, textTransform: 'uppercase', color: '#141414' }}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
           >
-            HOLÍ
+            <img src="/holi-wordmark.png" alt="Holí" style={{ height: 34, width: 'auto', display: 'block' }} />
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#91C2F4', color: '#FFFFFF', padding: '5px 10px', borderRadius: 30, fontSize: 12.5, fontWeight: 100 }}>
@@ -95,16 +82,14 @@ export default function MainApp({ state, update, addToast, resetState }) {
         </div>
       </div>
 
-      <div aria-hidden style={{ height: 'var(--header-h, 64px)', flexShrink: 0 }} />
+      {/* Reserves the fixed header's height in CSS (16 top + 34 row + 12 bottom +
+          0.5 border, plus the status-bar inset the header pads itself with) —
+          a JS-measured height stayed short on iPhone and hid the first row. */}
+      <div aria-hidden style={{ height: 'calc(63px + env(safe-area-inset-top, 0px))', flexShrink: 0 }} />
 
       <div className="fade-in-up" style={{ flex: 1, padding: '16px 20px calc(104px + env(safe-area-inset-bottom, 0px))', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
         {showQuote && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: '8px 16px', fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{label}</div>
-            </div>
-            <WeekStrip days={weekDays} />
-          </div>
+          <WeekStrip days={weekDays} label={label} />
         )}
 
         {isHome ? (

@@ -79,7 +79,7 @@ export default function SettingsScreen({ state, update, addToast, onNavigate, re
     const turningOn = !state.notif.master;
     update((prev) => ({ notif: { ...prev.notif, master: !prev.notif.master } }));
     if (turningOn) {
-      subscribeToPush(state).then((granted) => {
+      subscribeToPush({ ...state, notif: { ...state.notif, master: true } }).then((granted) => {
         if (!granted) addToast('Activa los permisos de notificación en tu navegador');
       });
     }
@@ -106,6 +106,9 @@ export default function SettingsScreen({ state, update, addToast, onNavigate, re
   };
 
   const deleteLocalData = () => {
+    // The Worker keeps the last schedule it was given (medication names
+    // included) — clear it before the local copy is gone.
+    syncSubscription({ ...state, notif: { ...state.notif, master: false } });
     resetState();
     addToast('✓ Datos locales borrados');
   };

@@ -5,8 +5,9 @@ import { computeExerciseDerived } from '../../utils/exercise';
 import { useExerciseActions } from '../../state/useExerciseActions';
 
 export default function EjercicioScreen({ state, update, addToast, onNavigate }) {
-  const { routineCards, activeRoutineBlocks, exWeekDaysCount, exWeekPct, exLongestStreak } = computeExerciseDerived(state);
-  const { toggleRoutineSelection, incrementExercise, completeRoutine } = useExerciseActions(update, addToast);
+  const { routineCards, activeRoutineBlocks, exWeekDaysCount, exWeekPct, exLongestStreak, exDoneCount, exTotalCount } = computeExerciseDerived(state);
+  const { toggleRoutineSelection, incrementExercise, completeRoutine } = useExerciseActions(state, update, addToast);
+  const allDone = exTotalCount > 0 && exDoneCount === exTotalCount;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -124,9 +125,10 @@ export default function EjercicioScreen({ state, update, addToast, onNavigate })
 
       <button
         onClick={completeRoutine}
-        style={{ padding: 15, background: '#141414', color: '#fff', border: 'none', borderRadius: 999, fontWeight: 500, cursor: 'pointer' }}
+        disabled={allDone}
+        style={{ padding: 15, background: allDone ? 'var(--surface2)' : '#141414', color: allDone ? 'var(--text-3)' : '#fff', border: 'none', borderRadius: 999, fontWeight: 500, cursor: allDone ? 'default' : 'pointer' }}
       >
-        Completar rutina(s)
+        {allDone ? 'Rutina(s) completada(s) ✓' : 'Completar rutina(s)'}
       </button>
     </div>
   );
